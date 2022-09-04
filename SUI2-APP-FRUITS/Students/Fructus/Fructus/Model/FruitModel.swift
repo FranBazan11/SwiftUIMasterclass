@@ -13,7 +13,7 @@ struct Fruit: Identifiable {
     var title: String
     var headline: String
     var image: String
-    var gradient: [Color]
+    var gradientColors: [Color]
     var description: String
-    var nutritions: [String]
+    var nutrition: [String]
 }

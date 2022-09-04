@@ -9,11 +9,13 @@ import SwiftUI
 
 struct OnboardingView: View {
     // MARK: - PROPERTIES
+    var fruits: [Fruit]
+    
     // MARK: - BODY
     var body: some View {
         TabView {
-            ForEach (1..<5) { item in
-                FruitCardView()
+            ForEach (fruits) { item in
+                FruitCardView(fruit: item)
             }
         } //: Tab View
         .tabViewStyle(.page)
@@ -24,6 +26,7 @@ struct OnboardingView: View {
 // MARK: - PREVIEW
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(fruits: fruitsData)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
     }
 }
