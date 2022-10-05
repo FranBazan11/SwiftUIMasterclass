@@ -19,10 +19,8 @@ struct StartButtonView: View {
         } label: {
             HStack(spacing: 8) {
                 Text("Start")
-                
                 Image(systemName: "arrow.right.circle")
                     .imageScale(.large)
-                    
             }
             .padding(EdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16))
             .background(
@@ -30,7 +28,6 @@ struct StartButtonView: View {
             )
         } //: BUTTON
         .accentColor(.white)
-
     }
 }
 

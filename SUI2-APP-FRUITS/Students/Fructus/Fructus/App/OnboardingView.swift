@@ -20,13 +20,12 @@ struct OnboardingView: View {
         } //: Tab View
         .tabViewStyle(.page)
         .padding(.vertical, 20)
-        
     }
 }
 // MARK: - PREVIEW
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView(fruits: fruitsData)
-            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+            .previewDevice(PreviewDevice(rawValue: "iPad Pro"))
     }
 }
