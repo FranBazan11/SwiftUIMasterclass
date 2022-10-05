@@ -11,7 +11,6 @@ struct FruitCardView: View {
     
     // MARK: -  PROPERTIES
     
-    // ESTO PUEDO SER LET?????????
     let fruit: Fruit
     
     @State private var isAnimating: Bool = false
@@ -79,6 +78,5 @@ struct FuitCardView_Previews: PreviewProvider {
         FruitCardView(fruit: fruitsData[2])
 //            .previewLayout(.fixed(width: 320, height: 640))
             .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
-    
     }
 }
