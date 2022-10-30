@@ -17,7 +17,11 @@ struct VideoListView: View {
     var body: some View {
         NavigationView {
             List(videos) { video in 
-                VideoListItemView(video: video)
+                NavigationLink { 
+                    VideoPlayerView(videoSelected: video.id, videoTitle: video.name)
+                } label: { 
+                    VideoListItemView(video: video)
+                }                
             } //: List
             .listStyle(.sidebar)
             .navigationTitle("Videos")

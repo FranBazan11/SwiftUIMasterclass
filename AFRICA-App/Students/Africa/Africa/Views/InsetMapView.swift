@@ -20,7 +20,6 @@ struct InsetMapView: View {
     var body: some View {
         Map(coordinateRegion: $region)
             .overlay(
-                
                 NavigationLink(destination: { 
                     MapView()
                 }, label: { 
