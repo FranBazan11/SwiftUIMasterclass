@@ -27,7 +27,5 @@ struct FeaturedItemView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
             .padding()
             .background(colorBackground)
-        
-            
     }
 }

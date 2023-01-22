@@ -13,13 +13,20 @@ struct CategoryGridView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: gridLayout, alignment: .center, spacing: rowSpacing) {
-                ForEach(categories) { category in
-                    CategoryItemView(category: category)
+                Section {
+                    ForEach(categories) { category in
+                        CategoryItemView(category: category)
+                    }
+                } header: {
+                    SectionView(rotateClockwise: false)
+                } footer: {
+                    SectionView(rotateClockwise: false)
                 }
+
             } //: LazyHGrid
             .frame(height: 140)
-            .padding(.horizontal, 15)
-            .padding(.vertical, 10)
+//            .padding(.horizontal, 15)
+//            .padding(.vertical, 10)
             
         } //: ScrollView
     }

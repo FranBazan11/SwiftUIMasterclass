@@ -10,6 +10,8 @@ import SwiftUI
 // DATA
 let players: [PlayerModel] = Bundle.main.decode("player.json")
 let categories: [CategoryModel] = Bundle.main.decode("category.json")
+let products: [ProductModel] = Bundle.main.decode("product.json")
+let brands: [BrandModel] = Bundle.main.decode("brand.json")
 
 // COLOR
 
@@ -24,6 +26,8 @@ var gridLayout: [GridItem] {
 }
 
 // UX
+let feedback = UIImpactFeedbackGenerator(style: .medium)
+
 // API
 // FONT
 // STRING
