@@ -9,56 +9,95 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    // MARK: - PROPERTIES
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    @State private var showNewTaskItem: Bool = false
+    // MARK: - FETCHING DATA
     @Environment(\.managedObjectContext) private var viewContext
-
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     
     private var items: FetchedResults<Item>
-
+    
+    // MARK: - BODY
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+        NavigationStack {
+            ZStack {
+                // MARK: MAIN VIEW
+                VStack {
+                    // MARK: HEADER
+                    Spacer(minLength: 80)
+                    
+                    // MARK: NEW TASK BUTTON
+                    NewTaskButton(showNewTaskItem: $showNewTaskItem)
+                    
+                    // MARK: TASKS
+                    if ( items.count == 0 ) {
+                        Spacer()
+                    } else {
+                        List {
+                            ForEach(items) { item in
+                               ListRowItemView(item: item)
+                                    .onTapGesture {
+                                        item.completion.toggle()
+                                    }
+                            }
+                            .onDelete(perform: deleteItems)
+                        } //: LIST
+                        .shadow(radius: 10)
+                        .listStyle(.insetGrouped)
+                        .frame(maxHeight: .infinity)
+                        .scrollContentBackground(.hidden)
                     }
+                    
+                } //: VSTACK
+                .blur(radius: showNewTaskItem ? 8 : 0)
+                .transition(.move(edge: .bottom))
+                // MARK: NEW TASK ITEM
+                if showNewTaskItem {
+                    BlankView()
+                        .onTapGesture {
+                            withAnimation {
+                                showNewTaskItem = false
+                            }
+                        }
+                    NewTaskItemView(isShowing: $showNewTaskItem)
                 }
-                .onDelete(perform: deleteItems)
-            }
+                
+            } //: ZSTACK
+            .background(BackgroundImageView().blur(radius: showNewTaskItem ? 6 : 0, opaque: false))
+            .background(backgroundGradient)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.trailing, 5)
+                        .frame(minWidth: 50, minHeight: 24)
+                        .background(
+                            Capsule().stroke(Color.white, lineWidth: 2))
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    
+                    Button {
+                        isDarkMode.toggle()
+                    } label: {
+                        Image(systemName: isDarkMode ? "moon.circle.fill" : "moon.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .font(.system(size: 18, weight: .semibold, design: .rounded))
+                            .foregroundColor(isDarkMode ? Color(UIColor.secondarySystemBackground) : .white)
                     }
+                       
                 }
-            }
-            Text("Select an item")
-        }
+            } //: TOOLBAR
+            .navigationTitle("Daily Tasks")
+            .navigationBarTitleDisplayMode(.large)
+        } //: NAVIGATION
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
+    // MARK: - PRIVATE FUNCS
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
@@ -66,8 +105,6 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
@@ -75,13 +112,7 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
+// MARK: - PREVIEW
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
