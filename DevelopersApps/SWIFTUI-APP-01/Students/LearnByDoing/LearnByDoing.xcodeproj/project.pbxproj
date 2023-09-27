@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0032DD82AC4CB3E00880E86 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0032DD72AC4CB3E00880E86 /* CardView.swift */; };
 		A04327992A77602E00ABF2B5 /* LearnByDoingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04327982A77602E00ABF2B5 /* LearnByDoingApp.swift */; };
 		A043279B2A77602E00ABF2B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043279A2A77602E00ABF2B5 /* ContentView.swift */; };
 		A043279D2A77602F00ABF2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A043279C2A77602F00ABF2B5 /* Assets.xcassets */; };
@@ -14,12 +15,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0032DD72AC4CB3E00880E86 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A04327952A77602E00ABF2B5 /* LearnByDoing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnByDoing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A04327982A77602E00ABF2B5 /* LearnByDoingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnByDoingApp.swift; sourceTree = "<group>"; };
 		A043279A2A77602E00ABF2B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A043279C2A77602F00ABF2B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A043279F2A77602F00ABF2B5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A04327A62A7762B100ABF2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A04327A62A7762B100ABF2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +54,11 @@
 		A04327972A77602E00ABF2B5 /* LearnByDoing */ = {
 			isa = PBXGroup;
 			children = (
-				A04327A62A7762B100ABF2B5 /* Info.plist */,
 				A04327982A77602E00ABF2B5 /* LearnByDoingApp.swift */,
 				A043279A2A77602E00ABF2B5 /* ContentView.swift */,
+				A0032DD72AC4CB3E00880E86 /* CardView.swift */,
 				A043279C2A77602F00ABF2B5 /* Assets.xcassets */,
+				A04327A62A7762B100ABF2B5 /* Info.plist */,
 				A043279E2A77602F00ABF2B5 /* Preview Content */,
 			);
 			path = LearnByDoing;
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A043279B2A77602E00ABF2B5 /* ContentView.swift in Sources */,
+				A0032DD82AC4CB3E00880E86 /* CardView.swift in Sources */,
 				A04327992A77602E00ABF2B5 /* LearnByDoingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
