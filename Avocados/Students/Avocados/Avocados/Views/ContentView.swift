@@ -40,8 +40,7 @@ struct ContentView: View {
             .toolbarColorScheme(.dark, for: .tabBar)
             
         }
-        .tint(Color.primary)
-        
+        .accentColor(Color.primary)
     }
 }
 

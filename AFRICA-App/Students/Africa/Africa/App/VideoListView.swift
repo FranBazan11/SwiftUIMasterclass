@@ -23,7 +23,7 @@ struct VideoListView: View {
                     VideoListItemView(video: video)
                 }                
             } //: List
-            .listStyle(.sidebar)
+            .listStyle(.plain)
             .navigationTitle("Videos")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { 
