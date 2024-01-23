@@ -42,40 +42,19 @@ struct DevoteWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
 
+    let images = ["takeoutbag.and.cup.and.straw.fill", "plus.circle.fill", "sun.min.fill"]
+    
     var body: some View {
-        GeometryReader { geometryReader in
-            ZStack {
-                backgroundGradient
-                Image("rocket-small")
+        HStack() {
+            ForEach(images, id:\.self) { image in
+                Image(systemName: image)
                     .resizable()
                     .scaledToFit()
-                Image("logo")
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                    .offset(
-                        x: (geometryReader.size.width / 2 - 18),
-                        y: (geometryReader.size.height / -2) + 18)
-                    .padding(.top, 25)
-                    .padding(.trailing, 25)
-                
-                HStack {
-                    Text("Just Do It")
-                        .foregroundColor(.white)
-                        .font(.system(.footnote, design: .rounded))
-                        .fontWeight(.bold)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 12)
-                        .background(
-                            Color.black.opacity(0.5).blendMode(.overlay))
-                        .clipShape(Capsule())
-                    if widgetFamily != .systemSmall {
-                        Spacer()
-                    }
-                }
-                .padding()
-                .offset(y: (geometryReader.size.height / 2) - 24)
+                    .frame(width:40)
             }
         }
+        
+        
     }
 }
 

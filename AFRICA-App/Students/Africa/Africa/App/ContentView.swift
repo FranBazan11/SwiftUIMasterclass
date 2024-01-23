@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var gridColumn: Int = 1
     @State private var toolbarIcon: String = "square.grid.2x2"
     
-    @State private var isGridViewActive: Bool = true
+    @State private var isGridViewActive: Bool = false
     
     // MARK: - FUNCS
     
